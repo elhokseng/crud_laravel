@@ -9,18 +9,38 @@
                             PRODUCTS
                         </h1>
                     </div>
+
                     <div class="m-3 float-end">
-                        <a href="{{ route('product.create') }}"><button class="btn btn-dark"> New product</button></a>
+                        <a href="{{ route('product.create', 'query') }}"><button class="btn btn-dark"> New
+                                product</button></a>
                     </div>
                 </div>
+
             </div>
             <div class="col-12">
+                {{-- <div class="mb-4">
+                    <form class="d-flex" method="get" action="/search   ">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="search" placeholder="Search....." value="{{ isset($search) ? $search : ''}}">
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>   --}}
+
+                {{-- <form action="{{ route('product.search') }}" method="GET" > --}}
+                <form action="{{ route('product.search') }}" method="GET">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="query" placeholder="Search....">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+
                 <div>
                     <div class="card">
                         <div class="card-body">
                             <table class="table table-hover table-centered mb-0">
                                 <thead>
-                                    <p> Product Total: {{$productCount}} </p>
+                                    <p> Product Total: {{ $productCount }} </p>
                                     <tr>
                                         <th>NO</th>
                                         <th>Name</th>
@@ -32,42 +52,48 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($products as $key=>$item)
-                                    <tr>
-                                        <td>
-                                            {{ $key+1}}
-                                        </td>
-                                        <td>
-                                            <a class="nav-link" href="product/{{$item->id}}/view">{{$item->name}}</a>
-                                        </td>
-                                        <td>
-                                            {{$item->description}}
-                                        </td>
-                                        <td>
-                                            {{$item->created_at}}
-                                        </td>
-                                        <td>
-                                            {{$item->updated_at}}
-                                        </td>
-                                        <td>
-                                            <img src="products/{{$item->image}}" class="rounded-circle" width="50" height="50">
-                                        </td>
-                                        <td><a href="product/{{$item->id}}/view"><button class="btn btn-dark">view</button></a></td>
-                                        <td><a href="product/{{$item->id}}/edit"><button class="btn btn-success">edit</button></a></td>
-                                        <td><a href="product/{{$item->id}}/delete"><button class="btn btn-danger">delete</button></a></td>
-                                    </tr>
+                                    @foreach ($products as $key => $items)
+                                        <tr>
+                                            <td>
+                                                {{ $items->id }}
+                                            </td>
+                                            <td>
+                                                <a class="nav-link"
+                                                    href="product/{{ $items->id }}/view">{{ $items->name }}</a>
+                                            </td>
+                                            <td>
+                                                {{ $items->description }}
+                                            </td>
+                                            <td>
+                                                {{ $items->created_at }}
+                                            </td>
+                                            <td>
+                                                {{ $items->updated_at }}
+                                            </td>
+                                            <td>
+                                                <img src="products/{{ $items->image }}" class="rounded-circle"
+                                                    width="50" height="50">
+                                            </td>
+                                            <td><a href="product/{{ $items->id }}/view"><button
+                                                        class="btn btn-dark">view</button></a></td>
+                                            <td><a href="product/{{ $items->id }}/edit"><button
+                                                        class="btn btn-success">edit</button></a></td>
+                                            <td><a href="product/{{ $items->id }}/delete"><button
+                                                        class="btn btn-danger">delete</button></a></td>
+                                        </tr>
                                     @endforeach
+
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    
+
                 </div>
-                
+
             </div>
         </div>
         <div class="mt-4">
-            {{$products->links()}}
+            {{ $products->links() }}
         </div>
     </div>
 @endsection

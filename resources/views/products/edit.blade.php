@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('main')
    
-        
     <div class="container mt-5">
         <h1>{{$product->name}}</h1>
         <p>Product_id: {{$product->id}}</p>
@@ -29,10 +28,17 @@
                     <span class="text-danger">{{ $errors->first('image') }}</span>
                 @endif
             </div>
-            <div class="mt-4">
+            <div class="mt-4 float-start    ">
                 <button class="btn btn-dark btn-sm">update product</button>
+
+                <button class="btn btn-primary btn-sm">    
+                    <a href="{{URL::route('product.index')}}" class="nav-link text-dark">
+                        Back
+                    </a>
+                </button>
             </div>
         </form>
     </div>
+    
 @endsection
 

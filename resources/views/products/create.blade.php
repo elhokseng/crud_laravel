@@ -2,8 +2,16 @@
 @section('main')
     <div class="container mt-5">
         <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
+            @csrf   
             @method('POST')
+            <div class="form-group">
+                <select class="form-select mb-3" aria-label="Default select example"  name="category_id"> 
+                    <option selected>select category</option>
+                    @foreach ($category as $cat)
+                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                    @endforeach 
+                  </select>
+            </div>
             <div class="form-group">
                 <label class="form-label">Name</label>
                 <input name="name" type="text" class="form-control" aria-describedby="nameHelpBlock" value="{{old('name')}}">
@@ -25,8 +33,11 @@
                     <span class="text-danger">{{ $errors->first('image') }}</span>
                 @endif
             </div>
-            <div class="mt-4">
-                <button class="btn btn-dark btn-lg">Submit</button>
+            <div class="mt-4 d-flex">
+                <button class="btn btn-dark btn-lg me-2e">Submit</button>
+                <button class="btn btn-primary btn-lg"> 
+                    <a class="nav-link text-light" href="{{URL::route('product.index')}}">Back</a>
+                </button>
             </div>
         </form>
     </div>
