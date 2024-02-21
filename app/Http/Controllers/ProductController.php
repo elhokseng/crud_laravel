@@ -39,7 +39,7 @@ class ProductController extends Controller
         $product->image = $imageName;
 
         $product->save();
-        return back()->withSuccess('Product Created !!!');
+        return redirect()->route('product.index')->withSuccess('Product Created !!!');
     }
 
     public function edit($id)
@@ -72,7 +72,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return back()->withSuccess('Sucess Updated !!!!');
+        return redirect()->route('product.index')->withSuccess('Sucess Updated !!!!');
     }
 
     public function delete($id)
