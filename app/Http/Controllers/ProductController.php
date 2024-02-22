@@ -117,8 +117,9 @@ class ProductController extends Controller
 
     public function view($id)
     {
+        $categorys = category::with('product')->find($id);
         $product = product::where('id',$id)->first();
-        return view('products.view',['product' => $product]);
+        return view('products.view',compact('product','categorys'));
     }   
 
     // for search 
