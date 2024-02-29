@@ -31,7 +31,7 @@
     @if ($message = Session::get('success'))
         <div class="alert-success alert-success alert-block p-3 text-lg">
             <strong>
-                {{ $message }}
+             {{ $message }}
             </strong>
         </div>
     @endif
